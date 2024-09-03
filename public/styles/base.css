@@ -1,0 +1,9 @@
+/* base styling for all webpages */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+}

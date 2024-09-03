@@ -6,8 +6,13 @@ const authRoutes = require('./routes/auth-route');
 const app = express();
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views')) //Path to views folder
+//Path to views folder
+app.set('views', path.join(__dirname, 'views')) 
 
-app.use(authRoutes); //Check for every incoming request
+//serve public files statically
+app.use(express.static('public'));
+
+//Check for every incoming request
+app.use(authRoutes); 
 
 app.listen(3000);
