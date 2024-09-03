@@ -4,6 +4,7 @@ const express = require("express");
 
 //import db
 const db = require("./database/connectdb");
+const errorHandler = require('./middlewares/error-handling');
 const authRoutes = require("./routes/auth-route");
 const app = express();
 
@@ -19,6 +20,9 @@ app.use(express.urlencoded({ extended: false }));
 
 //Check for every incoming request
 app.use(authRoutes);
+
+//use error handler middleware
+app.use(errorHandler);
 
 //server should only listen when a database connection is established
 db.connectDb()
