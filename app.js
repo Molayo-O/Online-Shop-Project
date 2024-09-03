@@ -14,6 +14,9 @@ app.set("views", path.join(__dirname, "views"));
 //serve public files statically
 app.use(express.static("public"));
 
+//allow data to be parsed during requests
+app.use(express.urlencoded({ extended: false }));
+
 //Check for every incoming request
 app.use(authRoutes);
 

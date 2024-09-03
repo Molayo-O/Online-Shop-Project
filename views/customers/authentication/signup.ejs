@@ -6,7 +6,7 @@
 <body>
     <%- include('../includes/header') %>
     <main>
-        <form action="" method="">
+        <form action="/signup" method="POST">
             <h1>Create New Account</h1>
             <div class="form-element">
                 <label for="fullname">Full Name</label>
@@ -31,10 +31,10 @@
                 <label for="postal">Postal Code</label>
                 <input 
                 type="text" 
-                name="street" 
-                id="street" 
+                name="postal" 
+                id="postal" 
                 minlength="5" 
-                maxlength="6" 
+                maxlength="7" 
                 required>
             </div>
             <button class="btn">Create Account</button>
