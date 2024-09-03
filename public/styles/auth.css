@@ -1,1 +1,66 @@
 /* styling sign up and log in forms */
+
+h1 {
+  text-align: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  grid-column: 1 / span 2;
+  justify-self: center;
+}
+
+form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 33em;
+  margin: 2em auto;
+  background-color: white;
+  border-radius: 1em;
+  padding: 0.5em 1.5em;
+}
+
+.form-element {
+  position: relative;
+  grid-column: 1 / span 2;
+}
+
+.form-element .fa-solid,
+.fa-regular {
+  margin: 0.1em;
+  color: #bbb;
+  position: absolute;
+  bottom: 1.7em;
+}
+
+input {
+  display: block;
+  border-style: none;
+  border-bottom: 1px solid #ddd;
+  padding: 1em;
+  margin-bottom: 1em;
+  text-indent: 1em;
+  width: 100%;
+}
+
+input:focus {
+  outline: none;
+}
+
+.btn {
+  display: block;
+  width: 24em;
+  padding: 1em;
+  margin: 1em auto;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 2em;
+  grid-column: 1 / span 2;
+  align-self: center;
+}
+
+p {
+  margin: 0.5em;
+  grid-column: 2;
+  font-size: 0.9em;
+  text-align: right;
+}
