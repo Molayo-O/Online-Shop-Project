@@ -2,6 +2,7 @@
 export function checkAuthStatus(req, res, next) {
   //access session data already defined
   const userID = req.session.userID;
+  const isAuth = req.session.isAuth;
 
   if (!userID) {
     //user is not authenticated, move to next middleware
