@@ -1,11 +1,13 @@
 import path from "path";
 import express from "express";
+import expressSession from "express-session";
 import { fileURLToPath } from "url";
 
 //import db
 import { connectDb } from "./database/connectdb.js";
 import { handleErrors } from "./middlewares/error-handling.js";
 import authRoutes from "./routes/auth-route.js";
+import { createSessionConfig } from "./config/session.js";
 const app = express();
 
 app.set("view engine", "ejs");
@@ -19,6 +21,10 @@ app.use(express.static("public"));
 
 //allow data to be parsed during requests
 app.use(express.urlencoded({ extended: false }));
+
+//use express session
+const sessionConfig = createSessionConfig();
+app.use(expressSession(sessionConfig));
 
 //Check for every incoming request
 app.use(authRoutes);
