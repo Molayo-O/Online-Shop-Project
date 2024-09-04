@@ -4,6 +4,7 @@ import {
   createSessionData,
   destroyUserSessionData,
 } from "../utilities/authSession.js";
+import { isformDataValid } from "../utilities/validateUserData.js";
 
 export function getSignup(req, res) {
   res.render("customers/authentication/signup");
@@ -12,6 +13,22 @@ export function getSignup(req, res) {
 export async function signup(req, res, next) {
   //retrieve user Data
   const userData = req.body;
+
+  //validate user Data
+  if (
+    !isformDataValid(
+      userData.email,
+      userData.password,
+      userData.fullname,
+      userData.street,
+      userData.postal
+    )
+  ) {
+    res.redirect("/signup");
+    return;
+  }
+
+  //create user object
   const newUser = new User(
     userData.email,
     userData.password,
@@ -20,8 +37,16 @@ export async function signup(req, res, next) {
     userData.postal
   );
 
-  //store user in db and redirect
+  let existingUser;
   try {
+    //validate credentials
+    existingUser = await newUser.getExistingUser();
+    if (existingUser) {
+      //user exists
+      res.redirect("/signup");
+      return;
+    }
+    //store user in db and redirect
     await newUser.signup();
   } catch (error) {
     //call error handling middleware
