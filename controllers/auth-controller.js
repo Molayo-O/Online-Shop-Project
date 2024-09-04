@@ -43,14 +43,14 @@ export async function login(req, res) {
   const isPasswordCorrect = await user.validateEnteredPassword(
     existingUser.password
   );
-  if(!isPasswordCorrect) {
+  if (!isPasswordCorrect) {
     //user is not authenticated
     res.redirect("/login");
     return;
   }
 
   //user is authenticated, add & save session data, then redirect
-  createSessionData(req, existingUser, function() {
-    res.redirect('/');
-  })
+  createSessionData(req, existingUser, function () {
+    res.redirect("/");
+  });
 }
