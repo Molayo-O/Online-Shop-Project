@@ -5,14 +5,34 @@ import {
   destroyUserSessionData,
 } from "../utilities/authSession.js";
 import { isformDataValid } from "../utilities/validateUserData.js";
+import {
+  stickSessionData,
+  retriveSessionData,
+} from "../utilities/sticky-session-data.js";
 
 export function getSignup(req, res) {
-  res.render("customers/authentication/signup");
+  let sessionData = retriveSessionData(req);
+  if (!sessionData) {
+    sessionData = {
+      email: "",
+      password: "",
+      fullname: "",
+      street: "",
+      postal: "",
+    };
+  }
+  res.render("customers/authentication/signup", { stickyData: sessionData });
 }
 
 export async function signup(req, res, next) {
   //retrieve user Data
-  const userData = req.body;
+  const userData = {
+    email: req.body.email,
+    password: req.body.password,
+    name: req.body.fullname,
+    street: req.body.street,
+    postal: req.body.postal,
+  };
 
   //validate user Data
   if (
@@ -24,7 +44,17 @@ export async function signup(req, res, next) {
       userData.postal
     )
   ) {
-    res.redirect("/signup");
+    //display sticky data
+    stickSessionData(
+      req,
+      {
+        errorMessage: "Please check provided credentials",
+        ...userData,
+      },
+      function () {
+        res.redirect("/signup");
+      }
+    );
     return;
   }
 
@@ -43,7 +73,17 @@ export async function signup(req, res, next) {
     existingUser = await newUser.getExistingUser();
     if (existingUser) {
       //user exists
-      res.redirect("/signup");
+      //display sticky data
+      stickSessionData(
+        req,
+        {
+          errorMessage: "User exists already, try log in?",
+          ...userData,
+        },
+        function () {
+          res.redirect("/signup");
+        }
+      );
       return;
     }
     //store user in db and redirect
@@ -56,7 +96,14 @@ export async function signup(req, res, next) {
 }
 
 export function getLogin(req, res) {
-  res.render("customers/authentication/login");
+  let sessionData = retriveSessionData(req);
+  if (!sessionData) {
+    sessionData = {
+      email: "",
+      password: "",
+    };
+  }
+  res.render("customers/authentication/login", { stickyData: sessionData });
 }
 
 export async function login(req, res, next) {
@@ -70,10 +117,20 @@ export async function login(req, res, next) {
     //call error handling middleware
     return next(error);
   }
+
+  const sessionErrorData = {
+    errorMessage: "Please check provided credentials",
+    email: user.email,
+    password: user.password,
+  };
+
   //validate credentials
   if (!existingUser) {
     //user is not authenticated
-    res.redirect("/login");
+    //display sticky data
+    stickSessionData(req, sessionErrorData, function () {
+      res.redirect("/login");
+    });
     return;
   }
 
@@ -83,8 +140,10 @@ export async function login(req, res, next) {
   );
   if (!isPasswordCorrect) {
     //user is not authenticated
-    res.redirect("/login");
-    return;
+    //display sticky data
+    stickSessionData(req, sessionErrorData, function () {
+      res.redirect("/login");
+    });
   }
 
   //user is authenticated, add & save session data, then redirect
