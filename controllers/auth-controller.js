@@ -1,12 +1,12 @@
 //import user class
-const User = require("../models/user-model");
+import { User } from "../models/user-model.js";
 
-function getSignup(req, res) {
+export function getSignup(req, res) {
   res.render("customers/authentication/signup");
 }
 
-async function signup(req, res) {
-  //retrieve and validate data
+export async function signup(req, res) {
+  //retrieve user Data
   const userData = req.body;
   const newUser = new User(
     userData.email,
@@ -17,16 +17,12 @@ async function signup(req, res) {
   );
 
   //store user in db and redirect
+
   await newUser.signup();
   res.redirect("/login");
 }
 
-function getLogin(req, res) {
+export function getLogin(req, res) {
   res.render("customers/authentication/login");
 }
 
-module.exports = {
-  getSignup: getSignup,
-  signup: signup,
-  getLogin: getLogin,
-};

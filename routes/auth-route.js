@@ -1,15 +1,14 @@
 //Handling authentication routes here
-const express = require("express");
+import express from "express";
 
 //include controller file
-const authController = require("../controllers/auth-controller");
+import { getSignup, signup, getLogin } from "../controllers/auth-controller.js";
 
 const router = express.Router();
 
+router.get("/signup", getSignup);
+router.post("/signup", signup);
+router.get("/login", getLogin);
 
-router.get("/signup", authController.getSignup);
-router.post("/signup", authController.signup);
-router.get("/login", authController.getLogin);
 
-
-module.exports = router;
+export default router;

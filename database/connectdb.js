@@ -1,16 +1,16 @@
 //establish connection to database
-const mongodb = require("mongodb");
+import mongodb from "mongodb";
 
 const MongoClient = mongodb.MongoClient;
 
 let database;
 
-async function connectDb() {
+export async function connectDb() {
   const client = await MongoClient.connect("mongodb://localhost:27017");
   database = client.db("online-shop");
 }
 
-function getDb() {
+export function getDb() {
   //determine if no database connection
   if (!database) {
     throw new Error("You must establish connection to db before access");
@@ -18,8 +18,3 @@ function getDb() {
 
   return database;
 }
-
-module.exports = {
-  connectDb: connectDb,
-  getDb: getDb,
-};

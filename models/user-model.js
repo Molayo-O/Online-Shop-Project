@@ -1,8 +1,8 @@
-const bcrypt = require("bcryptjs");
-const db = require("../database/connectdb");
+import bcrypt from "bcryptjs";
+import { getDb } from "../database/connectdb.js";
 
 //determine what is stored in db for every user created
-class User {
+export class User {
   constructor(email, password, fullname, street, postal) {
     this.email = email;
     this.password = password;
@@ -14,15 +14,12 @@ class User {
   }
   //functions(CRUD operations)
   async signup() {
-    //hash password
     const hashedPwd = await bcrypt.hash(this.password, 12);
-    await db.getDb().collection("users").insertOne({
+    await getDb().collection("users").insertOne({
       email: this.email,
       password: hashedPwd,
       name: this.name,
-      address: this.address
+      address: this.address,
     });
   }
 }
-
-module.exports = User;

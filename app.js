@@ -1,15 +1,17 @@
-const path = require("path");
-
-const express = require("express");
+import path from "path";
+import express from "express";
+import { fileURLToPath } from "url";
 
 //import db
-const db = require("./database/connectdb");
-const errorHandler = require('./middlewares/error-handling');
-const authRoutes = require("./routes/auth-route");
+import { connectDb } from "./database/connectdb.js";
+import { handleErrors } from "./middlewares/error-handling.js";
+import authRoutes from "./routes/auth-route.js";
 const app = express();
 
 app.set("view engine", "ejs");
-//Path to views folder
+// Path to views folder
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 app.set("views", path.join(__dirname, "views"));
 
 //serve public files statically
@@ -22,10 +24,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(authRoutes);
 
 //use error handler middleware
-app.use(errorHandler);
+app.use(handleErrors);
 
 //server should only listen when a database connection is established
-db.connectDb()
+connectDb()
   .then(function () {
     app.listen(3000);
   })
