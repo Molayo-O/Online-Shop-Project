@@ -8,14 +8,20 @@
     <main>
         <form action="/login" method="POST">
             <h1>Login</h1>
+            <% if(inputData.errorMessage) { %>
+                <section>
+                    <h2>Invalid input</h2>
+                    <p><%= inputData.errorMessage%></p>
+                </section>
+            <% } %>
             <div class="form-element">
                 <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
                 <i class="fa-regular fa-envelope"></i>
             </div>
             <div class="form-element">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" minlength="5" required >
+                <input type="password" name="password" id="password" minlength="5" value="<%= inputData.password %>" required >
                 <i class="fa-solid fa-lock"></i>
             </div>
             <p class="switch-to-login"><a href="/signup">Create Account</a></p>

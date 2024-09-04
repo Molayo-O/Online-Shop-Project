@@ -8,24 +8,30 @@
     <main>
         <form action="/signup" method="POST">
             <h1>Create New Account</h1>
+            <% if(inputData.errorMessage) { %>
+                <section>
+                    <h2>Invalid input</h2>
+                    <p><%= inputData.errorMessage%></p>
+                </section>
+            <% } %>
             <div class="form-element">
                 <label for="fullname">Full Name</label>
-                <input type="text" name="fullname" id="fullname" required>
+                <input type="text" name="fullname" id="fullname" value="<%= inputData.name %>" required>
                 <i class="fa-solid fa-user"></i>
             </div>
             <div class="form-element">
                 <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="<%= inputData.email %>" required>
                 <i class="fa-regular fa-envelope"></i>
             </div>
             <div class="form-element">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" minlength="5" required >
+                <input type="password" name="password" id="password" minlength="5" value="<%= inputData.password %>" required >
                 <i class="fa-solid fa-lock"></i>
             </div>
             <div class="form-element">
                 <label for="street">Street Address</label>
-                <input type="text" name="street" id="street" required>
+                <input type="text" name="street" id="street" value="<%= inputData.street %>" required>
             </div>
             <div class="form-element">
                 <label for="postal">Postal Code</label>
@@ -35,6 +41,7 @@
                 id="postal" 
                 minlength="5" 
                 maxlength="7" 
+                value="<%= inputData.postal %>"
                 required>
             </div>
             <button class="btn">Create Account</button>

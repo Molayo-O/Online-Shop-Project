@@ -16,12 +16,12 @@ export function getSignup(req, res) {
     sessionData = {
       email: "",
       password: "",
-      fullname: "",
+      name: "",
       street: "",
       postal: "",
     };
   }
-  res.render("customers/authentication/signup", { stickyData: sessionData });
+  res.render("customers/authentication/signup", { inputData: sessionData });
 }
 
 export async function signup(req, res, next) {
@@ -39,7 +39,7 @@ export async function signup(req, res, next) {
     !isformDataValid(
       userData.email,
       userData.password,
-      userData.fullname,
+      userData.name,
       userData.street,
       userData.postal
     )
@@ -62,7 +62,7 @@ export async function signup(req, res, next) {
   const newUser = new User(
     userData.email,
     userData.password,
-    userData.fullname,
+    userData.name,
     userData.street,
     userData.postal
   );
@@ -103,7 +103,7 @@ export function getLogin(req, res) {
       password: "",
     };
   }
-  res.render("customers/authentication/login", { stickyData: sessionData });
+  res.render("customers/authentication/login", { inputData: sessionData });
 }
 
 export async function login(req, res, next) {
