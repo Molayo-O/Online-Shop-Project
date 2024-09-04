@@ -1,6 +1,15 @@
 <header>
   <div id="logo"><a href="/">Monty's</a></div>
   <nav>
-    <ul></ul>
+    <ul>
+      <li><a href="/">Catalogue</a></li>
+      <% if(locals.isAuth) { %>
+        <li>
+          <form action="/logout" method="POST">
+            <button>Logout</button>
+          </form>
+        </li>
+      <% } %>
+    </ul>
   </nav>
 </header>
