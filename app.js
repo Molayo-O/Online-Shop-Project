@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 import { connectDb } from "./database/connectdb.js";
 import { handleErrors } from "./middlewares/error-handling.js";
 import authRoutes from "./routes/auth-route.js";
+import productRoutes from "./routes/products-route.js";
+import baseRoutes from "./routes/base-route.js";
 import { createSessionConfig } from "./config/session.js";
 const app = express();
 
@@ -28,6 +30,8 @@ app.use(expressSession(sessionConfig));
 
 //Check for every incoming request
 app.use(authRoutes);
+app.use(baseRoutes);
+app.use(productRoutes);
 
 //use error handler middleware
 app.use(handleErrors);
