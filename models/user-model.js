@@ -22,4 +22,13 @@ export class User {
       address: this.address,
     });
   }
+
+  async getExistingUser() {
+    //retrieve credentials from db
+    return await getDb().collection("users").findOne({email: this.email})
+  }
+
+  async validateEnteredPassword(hashedPwd) {
+    return await bcrypt.compare(this.password, hashedPwd)
+  }
 }
