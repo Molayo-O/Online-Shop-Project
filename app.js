@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 
 //import db
 import { connectDb } from "./database/connectdb.js";
+import { checkAuthStatus } from "./middlewares/authStatus.js";
 import { handleErrors } from "./middlewares/error-handling.js";
 import authRoutes from "./routes/auth-route.js";
 import productRoutes from "./routes/products-route.js";
@@ -27,6 +28,9 @@ app.use(express.urlencoded({ extended: false }));
 //use express session
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
+
+//use auth check middleware
+app.use(checkAuthStatus);
 
 //Check for every incoming request
 app.use(authRoutes);
