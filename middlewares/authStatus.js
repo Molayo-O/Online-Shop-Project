@@ -12,6 +12,7 @@ export function checkAuthStatus(req, res, next) {
   //user is authenticated, add global auth variables
   res.locals.userID = userID;
   res.locals.isAuth = true;
+  res.locals.isAdmin = req.session.isAdmin; //user is admin or not
   //go to next middleware
   next();
 }

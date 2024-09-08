@@ -2,7 +2,22 @@
   <div id="logo"><a href="/">Monty's</a></div>
   <nav>
     <ul>
-      <li><a href="/">Catalogue</a></li>
+      <% if(!locals.isAdmin) { %>
+        <li><a href="/">Catalogue</a></li>
+        <li><a href="/cart">Cart</a></li>
+      <% } %>
+      <!-- Admin can't view their orders -->
+      <% if(locals.isAuth && !locals.isAdmin) { %>
+        <li><a href="/orders">My orders</a></li>
+      <% } %>
+      <% if(locals.isAdmin) { %>
+        <li><a href="/admin/products">Manage Inventory</a></li>
+        <li><a href="/admin/orders">Manage Orders</a></li>
+      <% } %>
+      <% if(!locals.isAuth) { %>
+        <li><a href="/signup">Signup</a></li>
+        <li><a href="/login">Login</a></li>
+      <% } %>
       <% if(locals.isAuth) { %>
         <li>
           <form action="/logout" method="POST">
