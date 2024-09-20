@@ -6,5 +6,19 @@
     <main>
         <h1>My Products</h1>
         <p><a href="products/new-product">Add new product</a></p>
+        <section>
+            <ul>
+                <% for (const product of products) { %>
+                <li class="product-item">
+                    <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
+                    <h2><%= product.title %></h2>
+                    <div>
+                        <a href="/admin/products/<%=product.id%>">View % Edit</a>
+                        <button class="">Delete</button>
+                    </div>
+                </li>
+                <% } %>
+            </ul>
+        </section>
     </main>
 <%- include('../../shared-views/includes/footer') %>

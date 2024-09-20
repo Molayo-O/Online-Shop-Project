@@ -1,7 +1,14 @@
 import { Product } from "../models/product-model.js";
 
-export function getProducts(req, res) {
-  res.render("admin/products/all-products");
+export async function getProducts(req, res, next) {
+  try {
+    const products = await Product.retrieveAllProducts();
+
+    res.render("admin/products/all-products", { products: products });
+  } catch (error) {
+    next(error);
+    return;
+  }
 }
 
 export function getNewProduct(req, res) {
