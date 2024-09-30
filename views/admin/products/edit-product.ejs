@@ -1,11 +1,11 @@
 <!-- include head and header files -->
-<%- include('../../shared-views/includes/head', {pageTitle: 'Add Product'}) %>
+<%- include('../../shared-views/includes/head', {pageTitle: 'Edit Product'}) %>
 <link rel="stylesheet" href="/styles/forms.css">
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
     <main>
-        <h1>Add New Product</h1>
-        <%- include('../../shared-views/includes/product-form', {submitPath: '/admin/products/new-product'}) %>
+        <h1>Edit Product</h1>
+        <%- include('../../shared-views/includes/product-form', {submitPath: 'admin/products/' + product.id}) %>
     </main>
 <%- include('../../shared-views/includes/footer') %>
