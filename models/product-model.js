@@ -1,3 +1,5 @@
+import mongodb from "mongodb";
+
 import { getDb } from "../database/connectdb.js";
 
 //determine what is stored in db for every product created
@@ -21,6 +23,11 @@ export class Product {
     return products.map(function (productData) {
       return new Product(productData);
     });
+  }
+
+  static async findProductId(productId) {
+    
+    await getDb().collection("products").findOne({_id: pr});
   }
 
   //insert into db
