@@ -1,5 +1,6 @@
 <!-- include head and header files -->
 <%- include('../../shared-views/includes/head', {pageTitle: 'My Products'}) %>
+<link rel="stylesheet" href="/styles/allProducts.css">
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
@@ -7,7 +8,7 @@
         <h1>My Products</h1>
         <p><a href="products/new-product">Add new product</a></p>
         <section>
-            <ul>
+            <ul id="products-grid">
                 <% for (const product of products) { %>
                 <li class="product-item">
                     <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
