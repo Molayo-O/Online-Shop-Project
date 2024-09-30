@@ -32,9 +32,13 @@ export async function createNewProduct(req, res, next) {
   res.redirect("/admin/products");
 }
 
-export function getEditProduct(req, res) {
-  res.render("admin/products/new-product")
+export async function getEditProduct(req, res, next) {
+  try {
+    const product = await Product.findProductId(req.params.id);
+    res.render("admin/products/edit-product", { product: product });
+  } catch (error) {
+    next(error);
+  }
 }
 
-export function editProduct(req, res) {
-}
+export async function editProduct(req, res) {}

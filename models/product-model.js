@@ -1,5 +1,4 @@
-import mongodb from "mongodb";
-
+import { MongoClient, ObjectId } from "mongodb";
 import { getDb } from "../database/connectdb.js";
 
 //determine what is stored in db for every product created
@@ -26,8 +25,22 @@ export class Product {
   }
 
   static async findProductId(productId) {
-    
-    await getDb().collection("products").findOne({_id: pr});
+    let prodId;
+    try {
+      prodId = new ObjectId(productId);
+    } catch (error) {
+      error.code = 404;
+      throw error;
+    }
+    const product = await getDb()
+      .collection("products")
+      .findOne({ _id: prodId });
+    if (!product) {
+      const error = new Error("Could not find product");
+      error.code = 404;
+      throw error;
+    }
+    return product;
   }
 
   //insert into db

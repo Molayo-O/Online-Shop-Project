@@ -6,6 +6,11 @@
     <%- include('../../shared-views/includes/header') %>
     <main>
         <h1>Add New Product</h1>
-        <%- include('../../shared-views/includes/product-form', {submitPath: '/admin/products/new-product'}) %>
+        <%- include('../../shared-views/includes/product-form', {submitPath: '/admin/products/new-product', product: {
+            title: '',
+            summary: '',
+            price: '',
+            description: ''
+        }}) %>
     </main>
 <%- include('../../shared-views/includes/footer') %>
