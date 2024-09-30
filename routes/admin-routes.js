@@ -5,6 +5,8 @@ import {
   getProducts,
   getNewProduct,
   createNewProduct,
+  getEditProduct,
+  editProduct,
 } from "../controllers/admin-controller.js";
 
 import { handleImageUploadMiddleWare } from "../middlewares/handle-image-upload.js";
@@ -19,4 +21,8 @@ router.post(
   handleImageUploadMiddleWare,
   createNewProduct
 );
+
+router.get('/products/:id', getEditProduct);
+router.post('/products/:id', editProduct);
+
 export default router;

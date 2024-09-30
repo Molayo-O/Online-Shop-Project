@@ -31,3 +31,10 @@ export async function createNewProduct(req, res, next) {
 
   res.redirect("/admin/products");
 }
+
+export function getEditProduct(req, res) {
+  res.render("admin/products/new-product")
+}
+
+export function editProduct(req, res) {
+}
