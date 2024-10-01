@@ -6,6 +6,6 @@
     <%- include('../../shared-views/includes/header') %>
     <main>
         <h1>Edit Product</h1>
-        <%- include('../../shared-views/includes/product-form', {submitPath: 'admin/products/' + product.id, product: product}) %>
+        <%- include('../../shared-views/includes/product-form', {submitPath: product.id, product: product, imageNeeded: false}) %>
     </main>
 <%- include('../../shared-views/includes/footer') %>
