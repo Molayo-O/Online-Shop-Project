@@ -23,6 +23,6 @@ router.post(
 );
 
 router.get('/products/:id', getEditProduct);
-router.post('/products/:id', editProduct);
+router.post('/products/:id', handleImageUploadMiddleWare, editProduct);
 
 export default router;
