@@ -1,4 +1,8 @@
-<form action="/admin/products/<%= submitPath %>" method="POST" enctype="multipart/form-data">
+<form
+  action="/admin/products/<%= submitPath %>"
+  method="POST"
+  enctype="multipart/form-data"
+>
   <div class="new-product-container">
     <label for="title">Title</label>
     <input
@@ -9,10 +13,18 @@
       required
     />
   </div>
-  <div class="new-product-container">
-    <label for="image">Image</label>
-    <!-- image is only required when adding a new product -->
-    <input type="file" name="image" id="image" accept="image/png,image/jpg" <% if (imageNeeded) { %> required<%} %> /> 
+  <div class="image-display-preview">
+    <div>
+      <label for="image">Image</label>
+      <!-- image is only required when adding a new product -->
+      <input
+        type="file"
+        name="image"
+        id="image"
+        accept="image/png,image/jpg"
+        <% if(imageNeeded) { %>  required<%} %> />
+    </div>
+    <img src="" alt="Selected image." />
   </div>
   <div class="new-product-container">
     <label for="price">Price</label>
@@ -39,7 +51,8 @@
   </div>
   <div class="new-product-container">
     <label for="description">Description</label>
-    <textarea name="description" id="description" rows="5" required><%= product.description %></textarea>
+    <textarea name="description" id="description" rows="5" required>
+<%= product.description %></textarea>
   </div>
   <button type="reset">Reset</button>
   <button class="btn">Submit</button>

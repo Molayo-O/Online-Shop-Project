@@ -1,1 +1,17 @@
 /* Base styling for all forms */
+.image-display-preview {
+    display: flex;
+    align-items: center;
+}
+
+.image-display-preview img {
+    max-width: 15em;
+}
+
+.image-display-preview img {
+    display: none;
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 2em;
+}
