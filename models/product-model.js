@@ -40,7 +40,7 @@ export class Product {
       error.code = 404;
       throw error;
     }
-    return product;
+    return new Product(product);
   }
 
   //insert into db
@@ -52,6 +52,28 @@ export class Product {
       description: this.description,
       image: this.image,
     };
-    await getDb().collection("products").insertOne(productData);
+
+    if (this.id) {
+      const prodId = new ObjectId(this.id);
+
+      //to prevent overwriting image data
+      if(!this.image) {
+        delete productData.image;
+      }
+      await getDb().collection("products").updateOne(
+        { _id: prodId },
+        {
+          $set: productData,
+        }
+      );
+    } else {
+      await getDb().collection("products").insertOne(productData);
+    }
+  }
+
+  replaceImage(newImage) {
+    this.image = newImage;
+    this.imagePath = `product-data/images${this.image}`;
+    this.imageUrl = `/products/assets/images/${this.image}`;
   }
 }

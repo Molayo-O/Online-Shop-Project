@@ -3,7 +3,6 @@ import { Product } from "../models/product-model.js";
 export async function getProducts(req, res, next) {
   try {
     const products = await Product.retrieveAllProducts();
-
     res.render("admin/products/all-products", { products: products });
   } catch (error) {
     next(error);
@@ -41,4 +40,25 @@ export async function getEditProduct(req, res, next) {
   }
 }
 
-export async function editProduct(req, res) {}
+export async function editProduct(req, res, next) {
+  //Store in database
+  const product = new Product({
+    ...req.body,
+    _id: req.params.id,
+  });
+  console.log(product);
+
+  if (req.file) {
+    //replace old image with new image
+    product.replaceImage(req.file.filename);
+  }
+
+  try {
+    await product.insert();
+  } catch (error) {
+    next(error);
+    return;
+  }
+
+  res.redirect("/admin/products");
+}
