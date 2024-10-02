@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { connectDb } from "./database/connectdb.js";
 import { checkAuthStatus } from "./middlewares/authStatus.js";
 import { handleErrors } from "./middlewares/error-handling.js";
+import { handleProtectedRoutes } from "./middlewares/protectedRoutes.js";
 import authRoutes from "./routes/auth-route.js";
 import productRoutes from "./routes/products-route.js";
 import baseRoutes from "./routes/base-route.js";
@@ -38,7 +39,7 @@ app.use(checkAuthStatus);
 //Check for every incoming request
 app.use(authRoutes);
 app.use(baseRoutes);
-app.use("/admin", adminRoutes);
+app.use("/admin", handleProtectedRoutes, adminRoutes);
 app.use(productRoutes);
 
 //use error handler middleware
