@@ -57,7 +57,7 @@ export class Product {
       const prodId = new ObjectId(this.id);
 
       //to prevent overwriting image data
-      if(!this.image) {
+      if (!this.image) {
         delete productData.image;
       }
       await getDb().collection("products").updateOne(
@@ -75,5 +75,10 @@ export class Product {
     this.image = newImage;
     this.imagePath = `product-data/images${this.image}`;
     this.imageUrl = `/products/assets/images/${this.image}`;
+  }
+
+  async delete() {
+    const productId = new ObjectId(this.id);
+    await getDb().collection("products").deleteOne({ _id: productId });
   }
 }

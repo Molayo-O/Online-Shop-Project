@@ -7,6 +7,7 @@ import {
   createNewProduct,
   getEditProduct,
   editProduct,
+  deleteProduct,
 } from "../controllers/admin-controller.js";
 
 import { handleImageUploadMiddleWare } from "../middlewares/handle-image-upload.js";
@@ -22,7 +23,9 @@ router.post(
   createNewProduct
 );
 
-router.get('/products/:id', getEditProduct);
-router.post('/products/:id', handleImageUploadMiddleWare, editProduct);
+router.get("/products/:id", getEditProduct);
+router.post("/products/:id", handleImageUploadMiddleWare, editProduct);
+//router to delete product
+router.delete("/products/:id", deleteProduct);
 
 export default router;

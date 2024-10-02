@@ -62,3 +62,16 @@ export async function editProduct(req, res, next) {
 
   res.redirect("/admin/products");
 }
+
+export async function deleteProduct(req, res, next) {
+  //find existing product
+  try {
+    const product = await Product.findProductId(req.params.id);
+    //delete product
+    await product.remove();
+  } catch (error) {
+    return next(error);
+  }
+
+  res.redirect("/admin/products");
+}
