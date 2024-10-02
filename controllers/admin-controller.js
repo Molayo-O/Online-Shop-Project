@@ -68,10 +68,11 @@ export async function deleteProduct(req, res, next) {
   try {
     const product = await Product.findProductId(req.params.id);
     //delete product
-    await product.remove();
+    await product.delete();
   } catch (error) {
     return next(error);
   }
+  //We do not redirect here because we used ajax to delete product w/o reloading
 
-  res.redirect("/admin/products");
+  res.json({message: 'Deleted Product'});
 }

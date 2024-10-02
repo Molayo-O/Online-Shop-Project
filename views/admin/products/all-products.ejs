@@ -1,6 +1,7 @@
 <!-- include head and header files -->
 <%- include('../../shared-views/includes/head', {pageTitle: 'My Products'}) %>
 <link rel="stylesheet" href="/styles/allProducts.css">
+<script src="/scripts/product-manager.js" defer></script>
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
@@ -15,7 +16,7 @@
                     <h2><%= product.title %></h2>
                     <div>
                         <a href="/admin/products/<%=product.id%>">View % Edit</a>
-                        <button class="">Delete</button>
+                        <button class="" data-productid="<%= product.id %>">Delete</button>
                     </div>
                 </li>
                 <% } %>
