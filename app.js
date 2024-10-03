@@ -13,6 +13,7 @@ import authRoutes from "./routes/auth-route.js";
 import productRoutes from "./routes/products-route.js";
 import baseRoutes from "./routes/base-route.js";
 import adminRoutes from "./routes/admin-routes.js";
+import cartRoutes from "./routes/cart-routes.js";
 import { createSessionConfig } from "./config/session.js";
 const app = express();
 
@@ -29,6 +30,7 @@ app.use("/products/assets", express.static("product-data"));
 
 //allow data to be parsed during requests
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 //use express session
 const sessionConfig = createSessionConfig();
@@ -43,8 +45,9 @@ app.use(checkAuthStatus);
 //Check for every incoming request
 app.use(authRoutes);
 app.use(baseRoutes);
-app.use("/admin", handleProtectedRoutes, adminRoutes);
+app.use("/cart", cartRoutes);
 app.use(productRoutes);
+app.use("/admin", handleProtectedRoutes, adminRoutes);
 
 //use error handler middleware
 app.use(handleErrors);
