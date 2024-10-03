@@ -8,6 +8,7 @@ import { connectDb } from "./database/connectdb.js";
 import { checkAuthStatus } from "./middlewares/authStatus.js";
 import { handleErrors } from "./middlewares/error-handling.js";
 import { handleProtectedRoutes } from "./middlewares/protectedRoutes.js";
+import { initializeCart } from "./middlewares/sessionCart.js";
 import authRoutes from "./routes/auth-route.js";
 import productRoutes from "./routes/products-route.js";
 import baseRoutes from "./routes/base-route.js";
@@ -32,6 +33,9 @@ app.use(express.urlencoded({ extended: false }));
 //use express session
 const sessionConfig = createSessionConfig();
 app.use(expressSession(sessionConfig));
+
+//initialize cart
+app.use(initializeCart);
 
 //use auth check middleware
 app.use(checkAuthStatus);
