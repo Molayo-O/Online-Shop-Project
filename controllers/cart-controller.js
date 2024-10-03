@@ -5,7 +5,8 @@ export async function addCartItem(req, res, next) {
   let product;
   //find product id from db
   try {
-    product = await Product.findProductId(req.body.product.id);
+    //console.log(req.body.productId); from ajax Body
+    product = await Product.findProductId(req.body.productId);
   } catch (error) {
     next(error);
     return;

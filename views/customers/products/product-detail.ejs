@@ -1,6 +1,7 @@
 <!-- include head and header files -->
-<%- include('../../shared-views/includes/head', {pageTitle: ''}) %>
+<%- include('../../shared-views/includes/head', {pageTitle: product.title}) %>
 <link rel="stylesheet" href="/styles/allProducts.css">
+<script src="/scripts/cart-manager.js" defer></script>
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
@@ -10,7 +11,7 @@
             <div id="product-info">
                 <h1><%=product.name%></h1>
                 <p>$<%=product.price%></p>
-                <button class="btn">Add to Cart</button>
+                <button class="btn" data-productid="<%= product.id %>">Add to Cart</button>
             </div>
         </header>
         <p><%=product.description%></p>
