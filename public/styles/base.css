@@ -51,5 +51,12 @@ a {
 .btn:active {
     background-color: var(--secondary-bg);
     color: var(--secondary-text);
+}
 
+.badge {
+  margin-left: 1em;
+  padding: 1em;
+  border-radius: 2em;
+  color: var(--secondary-text);
+  background-color: var(--primary-bg);
 }

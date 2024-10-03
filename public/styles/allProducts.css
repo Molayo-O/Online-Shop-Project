@@ -19,7 +19,7 @@
 }
 
 #product-details img {
-  width: 100%;
+  width: 50%;
   object-fit: cover;
 }
 
@@ -29,4 +29,10 @@
 
 #product-details p:last-of-type {
   white-space: pre-wrap;
+}
+
+#product-details header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
