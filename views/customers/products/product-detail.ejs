@@ -1,0 +1,18 @@
+<!-- include head and header files -->
+<%- include('../../shared-views/includes/head', {pageTitle: ''}) %>
+<link rel="stylesheet" href="/styles/allProducts.css">
+</head>
+<body>
+    <%- include('../../shared-views/includes/header') %>
+    <main id="product-details">
+        <header>
+            <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
+            <div id="product-info">
+                <h1><%=product.name%></h1>
+                <p>$<%=product.price%></p>
+                <button>Add to Cart</button>
+            </div>
+        </header>
+        <p><%=product.description%></p>
+    </main>
+<%- include('../../shared-views/includes/footer') %>
