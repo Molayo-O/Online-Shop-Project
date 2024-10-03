@@ -24,7 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 //serve public files statically
 app.use(express.static("public"));
 //serve image folders statically using specific URL
-app.use('/products/assets', express.static('product-data'));
+app.use("/products/assets", express.static("product-data"));
 
 //allow data to be parsed during requests
 app.use(express.urlencoded({ extended: false }));

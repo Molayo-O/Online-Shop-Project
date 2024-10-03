@@ -1,9 +1,21 @@
 <!-- include head and header files -->
 <%- include('../../shared-views/includes/head', {pageTitle: 'Catalogue'}) %>
+<link rel="stylesheet" href="/styles/allProducts.css">
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
     <main>
         <h1>Catalogue</h1>
+        <ul id="products-grid">
+            <% for(const product of products) { %>
+                <li class="product-item">
+                    <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
+                    <h2><%= product.title %></h2>
+                    <div>
+                        <a href="/products/<%=product.id%>">View Details</a>
+                    </div>
+                </li>
+            <% } %>
+        </ul>
     </main>
 <%- include('../../shared-views/includes/footer') %>
