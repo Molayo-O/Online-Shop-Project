@@ -17,8 +17,8 @@ export class Cart {
       const item = this.items[i];
       //if so update our cart object in items array
       if (item.product.id === product.id) {
-        cartItem.quantity += 1;
-        cartItem.totalPrice += product.price;
+        cartItem.quantity = item.quantity + 1;
+        cartItem.totalPrice = item.totalPrice + product.price;
         this.items[i] = cartItem;
 
         //update global cart as well
