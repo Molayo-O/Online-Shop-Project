@@ -24,3 +24,21 @@ export async function addCartItem(req, res, next) {
     totalItems: cart.totalQuantity,
   });
 }
+
+export async function updateCartItem(req, res, next) {
+  const cart = res.locals.cart;
+  const updatedItemData = cart.updateCartItem(
+    req.body.productId,
+    req.body.quantity
+  );
+  //update session cart
+  req.session.cart = cart;
+  res.status(201).json({
+    message: "Item updated",
+    updatedCartData: {
+      newTotalQuantity: cart.totalQuantity,
+      newTotalPrice: cart.totalPrice,
+      updatedItemPrice: updatedItemData.updatedItemPrice,
+    },
+  });
+}
