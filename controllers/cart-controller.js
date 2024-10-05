@@ -1,6 +1,9 @@
 import { Product } from "../models/product-model.js";
 import { Cart } from "../models/cart-model.js";
 
+export function showCart(req, res) {
+  res.render("customers/user-cart/cart");
+}
 export async function addCartItem(req, res, next) {
   let product;
   //find product id from db
@@ -17,7 +20,7 @@ export async function addCartItem(req, res, next) {
   req.session.cart = cart;
 
   res.status(201).json({
-    message: 'Cart updated',
-    totalItems: cart.totalQuantity
+    message: "Cart updated",
+    totalItems: cart.totalQuantity,
   });
 }
