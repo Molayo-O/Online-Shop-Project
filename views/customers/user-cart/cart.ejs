@@ -1,6 +1,7 @@
 <!-- include head and header files -->
 <%- include('../../shared-views/includes/head', {pageTitle: 'My Cart'}) %>
 <link rel="stylesheet" href="/styles/cart.css">
+<script src="/scripts/cart-item-manager.js" defer></script>
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
@@ -14,10 +15,10 @@
                         <h2><%= cartItem.product.title %></h2>
                         <p>Total Price: $<%= cartItem.totalPrice.toFixed(2) %> ($<%= cartItem.product.price %> x <%= cartItem.quantity %>) </p>
                     </div>
-                    <div class="cart-item-manager">
+                    <form class="cart-item-manager" data-productid="<%= item.product.id %>">
                         <input type="number" value="<%= cartItem.quantity %>" required>
                         <button class="btn">Update</button>
-                    </div>
+                    </form>
                 </li>
             <% } %>
         </ul>
