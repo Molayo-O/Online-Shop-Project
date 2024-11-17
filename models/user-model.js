@@ -26,7 +26,9 @@ export class User {
 
   static async findById(userId) {
     const uid = new ObjectId(userId);
-    return getDb().collection("users").findOne({ _id: uid }, { password: -1 }); //exlude password from fetch query
+    return getDb()
+      .collection("users")
+      .findOne({ _id: uid }, { projection: { password: 0 } }); //exlude password from fetch query
   }
 
   async getExistingUser() {
