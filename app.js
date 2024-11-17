@@ -14,6 +14,7 @@ import productRoutes from "./routes/products-route.js";
 import baseRoutes from "./routes/base-route.js";
 import adminRoutes from "./routes/admin-routes.js";
 import cartRoutes from "./routes/cart-routes.js";
+import orderRoutes from "./routes/order-routes.js";
 import { createSessionConfig } from "./config/session.js";
 const app = express();
 
@@ -48,6 +49,7 @@ app.use(baseRoutes);
 app.use("/cart", cartRoutes);
 app.use(productRoutes);
 app.use("/admin", handleProtectedRoutes, adminRoutes);
+app.use("/orders", orderRoutes);
 
 //use error handler middleware
 app.use(handleErrors);
