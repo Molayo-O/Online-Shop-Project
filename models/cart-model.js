@@ -37,23 +37,23 @@ export class Cart {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
       //if so update our cart object in items array
-      if (item.product.id === product.id && newQuantity > 0) {
+      if (item.product.id === productId && newQuantity > 0) {
         const cartItem = { ...item };
         const quantityDifference = newQuantity - item.quantity;
         cartItem.quantity = newQuantity;
-        cartItem.totalPrice = newQuantity * product.price;
+        cartItem.totalPrice = newQuantity * item.product.price;
         this.items[i] = cartItem;
 
         //update global cart as well
-        this.totalQuantity += quantityDifference;
-        this.totalPrice += quantityDifference * product.price;
+        this.totalQuantity = this.totalQuantity + quantityDifference;
+        this.totalPrice += quantityDifference * item.product.price;
         return { updatedItemPrice: cartItem.totalPrice };
-      } else if (item.product.id === product.id && newQuantity <= 0) {
+      } else if (item.product.id === productId && newQuantity <= 0) {
         //delete item
         this.items.splice(i, 1);
 
         //update global cart
-        this.totalQuantity += this.totalQuantity - item.quantity;
+        this.totalQuantity = this.totalQuantity - item.quantity;
         this.totalPrice -= item.totalPrice;
 
         return { updatedItemPrice: 0 };
