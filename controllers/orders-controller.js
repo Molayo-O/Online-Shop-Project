@@ -1,8 +1,16 @@
 import { Order } from "../models/order-model.js";
 import { User } from "../models/user-model.js";
 
-export function getOrders(req, res) {
-  res.render("customers/orders/all-orders");
+//Get orders for specific user
+export async function getOrders(req, res) {
+  try {
+    const orders = await Order.findAllForUser(res.locals.userID);
+    res.render("customers/orders/all-orders", {
+      orders: orders,
+    });
+  } catch (error) {
+    next(error);
+  }
 }
 
 export async function submitOrder(req, res, next) {
@@ -10,7 +18,7 @@ export async function submitOrder(req, res, next) {
   let userData;
 
   try {
-    userData = await User.findById(res.locals.uid);
+    userData = await User.findById(res.locals.userID);
   } catch (error) {
     return next(error);
   }
@@ -22,5 +30,7 @@ export async function submitOrder(req, res, next) {
     next(error);
     return;
   }
+  //remove order data
+  req.session.cart = null;
   res.redirect("/orders");
 }
