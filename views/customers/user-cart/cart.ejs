@@ -13,9 +13,9 @@
                     <div class="cart-item-info">
                         <img src="<%= cartItem.product.imageUrl%>" alt="<%= cartItem.imageUrl %>">
                         <h2><%= cartItem.product.title %></h2>
-                        <p>Total Price: $<%= cartItem.totalPrice.toFixed(2) %> ($<%= cartItem.product.price %> x <%= cartItem.quantity %>) </p>
+                        <p>Total Price: $<span class="cart-item-totalPrice"><%= cartItem.totalPrice.toFixed(2) %></span> ($<%= cartItem.product.price %> x <%= cartItem.quantity %>) </p>
                     </div>
-                    <form class="cart-item-manager" data-productid="<%= item.product.id %>">
+                    <form class="cart-item-manager" data-productid="<%= cartItem.product.id %>">
                         <input type="number" value="<%= cartItem.quantity %>" required>
                         <button class="btn">Update</button>
                     </form>
@@ -23,7 +23,7 @@
             <% } %>
         </ul>
         <div id="cart-summary">
-            <p>Total: $<%= locals.cart.totalPrice.toFixed(2) %></p>
+            <p>Total: $<span id="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
             <button class="btn">Checkout</button>
         </div>
     </main>

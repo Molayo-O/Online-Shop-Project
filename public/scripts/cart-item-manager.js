@@ -9,7 +9,7 @@ async function updateCartItem(event) {
   const quantity = form.firstElementChild.value;
   let response;
   try {
-    response = fetch("/cart/items", {
+    response = await fetch("/cart/items", {
       method: "PATCH",
       body: JSON.stringify({
         productId: prodId,
@@ -23,12 +23,33 @@ async function updateCartItem(event) {
     alert("Something went wrong");
     return;
   }
-
+  
   if (!response.ok) {
     alert("Something went wrong");
     return;
   }
   const responseData = await response.json();
+
+  //update cart Item
+  if (responseData.updatedCartData.updatedItemPrice === 0) {
+    form.parentElement.remove();
+  } else {
+    //update Total Price of item displayed
+    const cartItemTotalPrice = form.parentElement.querySelector(
+      ".cart-item-totalPrice"
+    );
+    cartItemTotalPrice.textContent =
+      responseData.updatedCartData.updatedItemPrice.toFixed(2);
+  }
+
+  //update cart total displayed
+  const cartTotalPrice = document.getElementById("cart-total-price");
+  cartTotalPrice.textContent =
+    responseData.updatedCartData.newTotalPrice.toFixed(2);
+
+  //update cart badge
+  const cartIcon = document.querySelector(".nav-items .badge");
+  cartIcon.textContent = responseData.updatedCartData.newTotalQuantity;
 }
 
 for (const formElement of cartItemUpdateFormElements) {

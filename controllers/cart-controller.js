@@ -27,7 +27,7 @@ export async function addCartItem(req, res, next) {
 
 export async function updateCartItem(req, res, next) {
   const cart = res.locals.cart;
-  const updatedItemData = cart.updateCartItem(
+  const updatedItemData = cart.updateItem(
     req.body.productId,
     req.body.quantity
   );
