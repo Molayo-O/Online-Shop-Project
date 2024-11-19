@@ -23,7 +23,7 @@ async function updateCartItem(event) {
     alert("Something went wrong");
     return;
   }
-  
+
   if (!response.ok) {
     alert("Something went wrong");
     return;
@@ -48,8 +48,10 @@ async function updateCartItem(event) {
     responseData.updatedCartData.newTotalPrice.toFixed(2);
 
   //update cart badge
-  const cartIcon = document.querySelector(".nav-items .badge");
-  cartIcon.textContent = responseData.updatedCartData.newTotalQuantity;
+  const cartIcons = document.querySelectorAll(".nav-items .badge");
+  for (const cartIcon of cartIcons) {
+    cartIcon.textContent = responseData.updatedCartData.newTotalQuantity;
+  }
 }
 
 for (const formElement of cartItemUpdateFormElements) {
