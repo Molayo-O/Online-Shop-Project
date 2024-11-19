@@ -18,6 +18,11 @@ form {
   padding: 0.5em 1.5em;
 }
 
+.login {
+  max-width: 30em;
+  padding: 0.5em 2em;
+}
+
 .form-element {
   position: relative;
   grid-column: 1 / span 2;
