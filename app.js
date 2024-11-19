@@ -9,6 +9,8 @@ import { checkAuthStatus } from "./middlewares/authStatus.js";
 import { handleErrors } from "./middlewares/error-handling.js";
 import { handleProtectedRoutes } from "./middlewares/protectedRoutes.js";
 import { initializeCart } from "./middlewares/sessionCart.js";
+import { updateCartPrices } from "./middlewares/update-cart-prices.js";
+import { notFoundHandler } from "./middlewares/not-found.js";
 import authRoutes from "./routes/auth-route.js";
 import productRoutes from "./routes/products-route.js";
 import baseRoutes from "./routes/base-route.js";
@@ -39,6 +41,7 @@ app.use(expressSession(sessionConfig));
 
 //initialize cart
 app.use(initializeCart);
+app.use(updateCartPrices);
 
 //use auth check middleware
 app.use(checkAuthStatus);
@@ -49,8 +52,9 @@ app.use(baseRoutes);
 app.use("/cart", cartRoutes);
 app.use(productRoutes);
 app.use("/admin", handleProtectedRoutes, adminRoutes);
-app.use("/orders", orderRoutes);
+app.use("/orders", handleProtectedRoutes, orderRoutes);
 
+app.use(notFoundHandler);
 //use error handler middleware
 app.use(handleErrors);
 
