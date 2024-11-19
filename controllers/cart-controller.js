@@ -29,7 +29,7 @@ export async function updateCartItem(req, res, next) {
   const cart = res.locals.cart;
   const updatedItemData = cart.updateItem(
     req.body.productId,
-    req.body.quantity
+    +req.body.quantity
   );
   //update session cart
   req.session.cart = cart;
