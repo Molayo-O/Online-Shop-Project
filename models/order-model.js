@@ -30,12 +30,16 @@ export class Order {
   }
 
   //helper method
-  static transformOrderDocuments(orderDocs) {
-    return orderDocs.map(this.transformOrderDocument);
+  static transformOrderDocuments(orderData) {
+    if (!Array.isArray(orderData)) {
+      return [];
+    }
+
+    return orderData.map(this.transformOrderDocument);
   }
 
   static async findAll() {
-    const orders = getDb()
+    const orders = await getDb()
       .collection("orders")
       .find()
       .sort({ _id: -1 })
