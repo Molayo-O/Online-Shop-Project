@@ -1,5 +1,5 @@
 import { Product } from "../models/product-model.js";
-
+import { Order } from "../models/order-model.js";
 export async function getProducts(req, res, next) {
   try {
     const products = await Product.retrieveAllProducts();
@@ -75,4 +75,33 @@ export async function deleteProduct(req, res, next) {
   //We do not redirect here because we used ajax to delete product w/o reloading
 
   res.json({message: 'Deleted Product'});
+}
+
+export async function getOrders(req, res, next) {
+  try {
+    const orders = await Order.findAll();
+    console.log(orders);
+    res.render('admin/orders/admin-orders', {
+      orders: orders
+    });
+  } catch (error) {
+    next(error);
+  }
+}
+
+export async function updateOrder(req, res, next) {
+  const orderId = req.params.id;
+  const newStatus = req.body.newStatus;
+
+  try {
+    const order = await Order.findById(orderId);
+
+    order.status = newStatus;
+
+    await order.save();
+
+    res.json({ message: 'Order updated', newStatus: newStatus });
+  } catch (error) {
+    next(error);
+  }
 }
