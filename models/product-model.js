@@ -43,6 +43,23 @@ export class Product {
     return new Product(product);
   }
 
+  static async findMultiple(ids) {
+    //convert to mongodb id objects
+    const productIds = ids.map(function (id) {
+      return new ObjectId(id);
+    });
+
+    //query to find all product ids in the array of specified product Ids
+    const products = await getDb()
+      .collection("products")
+      .find({ _id: { $in: productIds } })
+      .toArray();
+
+    return products.map(function (productDocument) {
+      return new Product(productDocument);
+    });
+  }
+
   //insert into db
   async insert() {
     const productData = {
