@@ -1,3 +1,8 @@
+import Stripe from "stripe";
+import { configDotenv } from "dotenv";
+configDotenv();
+const stripeObj = Stripe(process.env.STRIPE_API_KEY);
+
 import { Order } from "../models/order-model.js";
 import { User } from "../models/user-model.js";
 
@@ -32,5 +37,34 @@ export async function submitOrder(req, res, next) {
   }
   //remove order data
   req.session.cart = null;
-  res.redirect("/orders");
+
+  //Make stripe payment
+  const session = await stripeObj.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: cart.items.map(function (item) {
+      return {
+        price_data: {
+          currency: "cad",
+          product_data: {
+            name: item.product.title,
+          },
+          unit_amount: +item.product.price.toFixed(2) * 100,
+        },
+        quantity: item.quantity,
+      };
+    }),
+    mode: "payment",
+    success_url: `http://localhost:3000/orders/success`,
+    cancel_url: `http://localhost:3000/orders/failure`,
+  });
+
+  res.redirect(303, session.url);
+}
+
+export function getSuccess(req, res) {
+  res.render("customers/orders/success");
+}
+
+export function getFailure(req, res) {
+  res.render("customers/orders/failure");
 }
