@@ -1,8 +1,9 @@
+/* Smaller Screen */
 #base-header {
   display: flex;
   width: 100%;
   max-width: 60em;
-  height: 4em;
+  padding: 1em 0.25em;
   justify-content: space-between;
   align-items: center;
 }
@@ -24,7 +25,7 @@
 }
 
 .nav-items li {
-  margin: 0 2em;
+  margin: 0.7em auto;
 }
 
 .nav-items button {
@@ -45,7 +46,6 @@
   border-bottom: 0.1em solid;
 }
 
-/* Mobile devices :( */
 #mobile-nav-btn {
   display: flex;
   flex-direction: column;
@@ -100,6 +100,10 @@
   #mobile-nav-menu,
   #mobile-nav-menu.show {
     display: none;
+  }
+
+  #base-header {
+    padding: 1em;
   }
   #base-header nav {
     display: block;

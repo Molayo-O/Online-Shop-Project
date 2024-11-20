@@ -1,7 +1,7 @@
 <ul class="nav-items">
   <% if(!locals.isAdmin) { %>
     <li><a href="/">Catalogue</a></li>
-    <li><a href="/cart">Cart <span class="badge"><%= locals.cart.totalQuantity %></span></a></li>
+    <li><a href="/cart"><i class="fa-solid fa-cart-shopping"></i> <span class="badge"><%= locals.cart.totalQuantity %></span></a></li>
   <% } %>
   <!-- Admin can't view their orders -->
   <% if(locals.isAuth && !locals.isAdmin) { %>

@@ -9,6 +9,7 @@
   --secondary-bg: #ffffff;
   --primary-text: #000000;
   --secondary-text: #f08e7f;
+  --secondary-hover-color: #dc8375;
   --primary-bg: #fdeee3;
 }
 
@@ -49,13 +50,12 @@ a {
 
 .btn:hover,
 .btn:active {
-    background-color: var(--secondary-bg);
-    color: var(--secondary-text);
+    background-color: var(--secondary-hover-color);
 }
 
 .badge {
-  margin-left: 1em;
-  padding: 1em;
+  margin-left: 0.25em;
+  padding: 0.05em 0.35em;
   border-radius: 2em;
   color: var(--secondary-text);
   background-color: var(--primary-bg);
