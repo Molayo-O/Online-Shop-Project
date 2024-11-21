@@ -28,8 +28,14 @@ main a:hover {
   object-fit: cover;
 }
 
+#product-details h1 {
+  margin: 0.25em;
+}
+
 #product-details img {
-  width: 50%;
+  border-radius: 0.25em;
+  width: 80%;
+  height: 22.5em;
   object-fit: cover;
 }
 
@@ -37,14 +43,19 @@ main a:hover {
   text-align: center;
 }
 
-#product-details p:last-of-type {
+#product-info p {
+  margin: 0.25em;
+}
+
+#product-details .product-desc {
+  text-align: center;
   white-space: pre-wrap;
 }
 
 #product-details header {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 /* Larger screens */
@@ -60,6 +71,11 @@ main a:hover {
 
   #products-grid {
     margin: 1em 2.5em;
+  }
+
+  #product-details img {
+    width: 30%;
+    height: 25em;
   }
 
   .product-item img {

@@ -9,11 +9,11 @@
         <header>
             <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
             <div id="product-info">
-                <h1><%=product.name%></h1>
+                <h1><%=product.title%></h1>
                 <p>$<%=product.price%></p>
                 <button class="btn" data-productid="<%= product.id %>">Add to Cart</button>
             </div>
         </header>
-        <p><%=product.description%></p>
+        <p class="product-desc"><strong>Description:</strong> <%=product.description%></p>
     </main>
 <%- include('../../shared-views/includes/footer') %>
