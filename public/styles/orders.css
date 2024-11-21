@@ -1,0 +1,25 @@
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--secondary-bg);
+  margin: 1em 2em;
+  padding: 1em;
+  border-radius: 2em;
+}
+
+.order-summary h2, .order-summary p {
+  margin: 0.1em;
+}
+
+main h1 {
+  text-align: center;
+}
+
+/* large screen */
+@media (min-width: 40em) {
+  .order-summary {
+    width: 40%;
+    margin: 1em auto;
+  }
+}

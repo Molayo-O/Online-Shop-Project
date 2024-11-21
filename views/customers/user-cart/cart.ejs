@@ -23,14 +23,18 @@
             <% } %>
         </ul>
         <div id="cart-summary">
-            <p>Total: $<span id="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
-            <% if(locals.isAuth && locals.cart.totalQuantity > 0) { %>
-                <form class="checkout" action="/orders" method="POST">
-                    <i class="fa-brands fa-stripe"></i>
-                    <button class="btn">Checkout</button>
-                </form>
-            <%} else {%>
-                <p id="cart-checkout-login">Log in and add items to purchase</p>
+            <% if (locals.isAuth) { %>
+                <% if (locals.cart.totalQuantity > 0) { %>
+                    <p>Total: $<span id="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
+                    <form class="checkout" action="/orders" method="POST">
+                        <i class="fa-brands fa-stripe"></i>
+                        <button class="btn">Checkout</button>
+                    </form>
+                <% } else { %>
+                    <p id="cart-checkout-login">Your Shopping Bag Is Empty! <a href="/">Add items</a></p>
+                <% } %>
+            <% } else { %>
+                <p id="cart-checkout-login"><a href="/login">Login</a> to proceed! </p>
             <% } %>
         </div>
     </main>

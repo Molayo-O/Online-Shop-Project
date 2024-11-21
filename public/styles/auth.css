@@ -74,6 +74,11 @@ p {
   text-decoration: underline;
 }
 
+.error-message {
+  color: red;
+  grid-column: 1 / span 2;
+}
+
 /* Large Screens */
 @media (min-width: 40em) {
   h1 {
