@@ -5,7 +5,7 @@
 </head>
 <body>
     <%- include('../../shared-views/includes/header') %>
-    <main>
+    <main id="cart-section">
         <h1>My Cart</h1>
         <ul id="cart-items">
             <% for(const cartItem of locals.cart.items) { %>
@@ -13,7 +13,7 @@
                     <div class="cart-item-info">
                         <img src="<%= cartItem.product.imageUrl%>" alt="<%= cartItem.imageUrl %>">
                         <h2><%= cartItem.product.title %></h2>
-                        <p>Total Price: $<span class="cart-item-totalPrice"><%= cartItem.totalPrice.toFixed(2) %></span> ($<%= cartItem.product.price %> x <%= cartItem.quantity %>) </p>
+                        <p>Total Price: $<span class="cart-item-totalPrice"><%= cartItem.totalPrice.toFixed(2) %></span> ($<%= cartItem.product.price %> x <span class="cart-item-quantity"><%= cartItem.quantity %></span>) </p>
                     </div>
                     <form class="cart-item-manager" data-productid="<%= cartItem.product.id %>">
                         <input type="number" value="<%= cartItem.quantity %>" required>
@@ -25,7 +25,8 @@
         <div id="cart-summary">
             <p>Total: $<span id="cart-total-price"><%= locals.cart.totalPrice.toFixed(2) %></span></p>
             <% if(locals.isAuth && locals.cart.totalQuantity > 0) { %>
-                <form action="/orders" method="POST">
+                <form class="checkout" action="/orders" method="POST">
+                    <i class="fa-brands fa-stripe"></i>
                     <button class="btn">Checkout</button>
                 </form>
             <%} else {%>

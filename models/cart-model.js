@@ -48,6 +48,7 @@ export class Cart {
         this.items[i] = cartItem;
 
         //update global cart as well
+        this.quantity = newQuantity;
         this.totalQuantity = this.totalQuantity + quantityDifference;
         this.totalPrice += quantityDifference * item.product.price;
         return { updatedItemPrice: cartItem.totalPrice };
