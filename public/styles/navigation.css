@@ -47,6 +47,15 @@
   border-bottom: 0.1em solid;
 }
 
+.fa-cart-shopping {
+  font-size: 1.25em;
+}
+
+.cart-nav {
+  display: flex;
+  align-items: center;
+}
+
 #mobile-nav-btn {
   display: flex;
   flex-direction: column;
