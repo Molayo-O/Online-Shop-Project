@@ -148,7 +148,12 @@ export async function login(req, res, next) {
 
   //user is authenticated, add & save session data, then redirect
   createSessionData(req, existingUser, function () {
-    res.redirect("/");
+    if(existingUser.isAdmin) {
+      res.redirect("/admin/products");
+    }
+    else {
+      res.redirect("/");
+    }
   });
 }
 
