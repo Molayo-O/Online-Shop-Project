@@ -48,8 +48,11 @@ main a:hover {
 }
 
 #product-details .product-desc {
+  font-size: 0.75em;
   text-align: center;
   white-space: pre-wrap;
+  width: 80%;
+  margin: 1.5em auto;
 }
 
 #product-details header {
@@ -120,5 +123,9 @@ main a:hover {
 
   .admin-actions {
     width: 75%;
+  }
+
+  #product-details .product-desc {
+    width: 50%;
   }
 }
