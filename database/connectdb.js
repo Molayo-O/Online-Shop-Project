@@ -1,13 +1,16 @@
 //establish connection to database
 import mongodb from "mongodb";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const MongoClient = mongodb.MongoClient;
+
 
 let database;
 
 export async function connectDb() {
-  const client = await MongoClient.connect("mongodb://localhost:27017");
-  database = client.db("online-shop");
+  const client = await MongoClient.connect(process.env.MONGODB_URL);
+  database = client.db("Online-Shop-Project");
 }
 
 export function getDb() {
