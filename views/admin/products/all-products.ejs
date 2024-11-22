@@ -7,20 +7,20 @@
     <%- include('../../shared-views/includes/header') %>
     <main>
         <h1>My Products</h1>
-        <p><a href="products/new-product">Add new product</a></p>
         <section>
             <ul id="products-grid">
                 <% for (const product of products) { %>
-                <li class="product-item">
-                    <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
-                    <h2><%= product.title %></h2>
-                    <div>
-                        <a href="/admin/products/<%=product.id%>">View % Edit</a>
-                        <button class="" data-productid="<%= product.id %>">Delete</button>
-                    </div>
-                </li>
-                <% } %>
-            </ul>
-        </section>
+                    <li class="product-item">
+                        <img src="<%= product.imageUrl%>" alt="<%= product.title%>">
+                        <h2><%= product.title %></h2>
+                        <div class="admin-actions">
+                            <a href="/admin/products/<%=product.id%>">View & Edit</a>
+                            <button class="btn" data-productid="<%= product.id %>">Delete</button>
+                        </div>
+                    </li>
+                    <% } %>
+                </ul>
+            </section>
+        <a class="add-new-product" href="products/new-product">Add New Product</a>
     </main>
 <%- include('../../shared-views/includes/footer') %>

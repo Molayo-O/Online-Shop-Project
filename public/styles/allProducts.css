@@ -23,8 +23,8 @@ main a:hover {
 
 .product-item img {
   border-radius: 0.25em;
-  width: 100%;
-  height: 10em;
+  width: 60%;
+  height: 15em;
   object-fit: cover;
 }
 
@@ -58,6 +58,34 @@ main a:hover {
   align-items: center;
 }
 
+.add-new-product {
+  display: block;
+  color: var(--secondary-bg);
+  border-style: none;
+  border-radius: 2em;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+  margin: 1.5em auto;
+  width: 50%;
+  padding: 0.75em;
+  background-color: var(--secondary-text);
+}
+
+.add-new-product:hover {
+  text-decoration: none;
+  color: var(--secondary-text);
+  background-color: var(--secondary-bg);
+}
+
+.admin-actions {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 /* Larger screens */
 @media (min-width: 40em) {
   main h1 {
@@ -81,5 +109,16 @@ main a:hover {
   .product-item img {
     width: 100%;
     height: 25em;
+  }
+
+  .add-new-product {
+    border-radius: 2em;
+    font-size: 1.2em;
+    width: 20%;
+    padding: 0.75em;
+  }
+
+  .admin-actions {
+    width: 75%;
   }
 }

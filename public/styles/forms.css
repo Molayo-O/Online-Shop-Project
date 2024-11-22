@@ -1,17 +1,61 @@
 /* Base styling for all forms */
+h1 {
+  text-align: center;
+}
+
+#admin-action-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  max-width: 28em;
+  margin: 0.25em auto;
+  background-color: white;
+  border-radius: 1em;
+  padding: 2em 1em;
+}
+
+.new-product-container {
+  display: flex;
+  align-items: center;
+  grid-column: 1 / span 2;
+  margin: 0.2em;
+}
+
+.new-product-container label {
+  margin-right: 1em;
+}
+input {
+  border-radius: 0.5em;
+  padding: 0.25em;
+  width: 90%;
+}
+
+#admin-action-form button {
+  font: inherit;
+  cursor: pointer;
+  width: 50%;
+  border-radius: 1.5em;
+  padding: 0.5em;
+  margin: 1.5em auto 0.1em auto;
+}
+
+#admin-action-form button:first-of-type {
+  border-style: none;
+}
+
+#admin-action-form button:first-of-type:hover {
+  background-color: #cbcaca;
+}
+
 .image-display-preview {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .image-display-preview img {
-    max-width: 15em;
-}
-
-.image-display-preview img {
-    display: none;
-    width: 4em;
-    height: 4em;
-    object-fit: cover;
-    border-radius: 2em;
+  display: none;
+  width: 50%;
+  height: 4em;
+  object-fit: cover;
+  border-radius: 1.5em;
+  margin-left: 2em;
 }
