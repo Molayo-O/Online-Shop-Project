@@ -20,5 +20,6 @@ This project is a responsive online shop built with a modern tech stack, featuri
 - **Manage Products**: Add or remove inventory items.
 - **View Orders**: Track and manage customer orders.
 
-Site Available At 👉 https://plantastic-p4oa.onrender.com
+Site Available At 👉 https://plantastic-p4oa.onrender.com.
+
 *Note: Web service may experience delays of 50 seconds or more if it has been inactive. This is due to the service being spun down to save resources during periods of low usage.*
