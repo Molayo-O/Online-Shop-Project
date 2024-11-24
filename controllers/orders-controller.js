@@ -54,8 +54,8 @@ export async function submitOrder(req, res, next) {
       };
     }),
     mode: "payment",
-    success_url: `http://localhost:3000/orders/success`,
-    cancel_url: `http://localhost:3000/orders/failure`,
+    success_url: `https://plantastic-p4oa.onrender.com/orders/success`,
+    cancel_url: `https://plantastic-p4oa.onrender.com/orders/failure`,
   });
 
   res.redirect(303, session.url);
