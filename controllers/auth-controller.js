@@ -103,6 +103,11 @@ export function getLogin(req, res) {
       password: "",
     };
   }
+  //check if user wants to login as admin
+  if(req.query.testAdmin) {
+    sessionData.email = "testAdmin@gmail.com";
+    sessionData.password = "password";
+  }
   res.render("customers/authentication/login", { inputData: sessionData });
 }
 

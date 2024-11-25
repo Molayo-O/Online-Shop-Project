@@ -48,6 +48,12 @@ app.use(checkAuthStatus);
 
 //Check for every incoming request
 app.use(authRoutes);
+
+//route for test admin
+app.get("/login/test-admin", (req, res) => {
+  res.redirect("/login?testAdmin=true");
+});
+
 app.use(baseRoutes);
 app.use("/cart", cartRoutes);
 app.use(productRoutes);

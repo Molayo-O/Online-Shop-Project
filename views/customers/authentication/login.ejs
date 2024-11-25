@@ -21,7 +21,10 @@
                 <input type="password" name="password" id="password" minlength="5" value="<%= inputData.password %>" required >
                 <i class="fa-solid fa-lock"></i>
             </div>
-            <p class="switch-to-login"><a href="/signup">Create Account</a></p>
+            <div class="switch-option">
+                <a href="/signup">Create Account</a>
+                <a href="/login/test-admin" class="test-admin-link">Log in as Test Admin</a>
+            </div>
             <button class="btn">Login</button>
         </form>
     </main>
