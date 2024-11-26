@@ -1,4 +1,4 @@
-# Plantastic - Online Shop Project
+# Plantastic - Online Shop Project (Ongoing)
 
 ## Overview
 This project is a responsive online shop built with a modern tech stack, featuring Node.js and Express for the backend, HTML, CSS, and JavaScript for the frontend, and MongoDB Atlas for the database. It provides a seamless shopping experience with customer and admin views, product browsing, and secure payment processing via Stripe.
